@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ public class ManagerData extends AppCompatActivity {
     EditText etName, etPhone, etPgName,etPinCode , etDateCreated;
     Button btnSave;
     FirebaseUser firebaseUser;
+    String UserId;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     @Override
@@ -34,11 +36,9 @@ public class ManagerData extends AppCompatActivity {
         findallView();
         FirebaseApp.initializeApp(this);
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-
-      //  userId= firebaseUser.getUid();
-      //  Log.d(TAG, "Manager Id:"+ firebaseUser.getEmail());
+        userId=firebaseUser.getUid().toString();
         firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference();
+        databaseReference=firebaseDatabase.getReference().child("PG").child(userId);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,12 +48,12 @@ public class ManagerData extends AppCompatActivity {
                 pinCode=etPinCode.getText().toString();
                 DateCreated=etDateCreated.getText().toString();
                 verifyDetails();
-                databaseReference.child("PG").child("PgDetails").child("Name").push().setValue(Name);
-                databaseReference.child("PG").child("PgDetails").child("Phone").push().setValue(Phone);
-                databaseReference.child("PG").child("PgDetails").child("PGName").push().setValue(PgName);
-                databaseReference.child("PG").child("PgDetails").child("Pincode").push().setValue(pinCode);
-                databaseReference.child("PG").child("PgDetails").child("DateCreated").push().setValue(DateCreated);
-                Toast.makeText(getBaseContext(),"Data Saved Succesfully", Toast.LENGTH_SHORT).show();
+                databaseReference.child("PgDetails").child("Name").push().setValue(Name);
+                databaseReference.child("PgDetails").child("Phone").push().setValue(Phone);
+                databaseReference.child("PgDetails").child("PGName").push().setValue(PgName);
+                databaseReference.child("PgDetails").child("Pincode").push().setValue(pinCode);
+                databaseReference.child("PgDetails").child("DateCreated").push().setValue(DateCreated);
+                Toast.makeText(getBaseContext(),"Data Saved Successfully", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext() , AddTenantActivity.class));
             }
         });
@@ -63,6 +63,8 @@ public class ManagerData extends AppCompatActivity {
             etPhone.setError("Enter valid Phone Number");
         }else if (Phone.isEmpty()){
             etPhone.setError("Phone Number Required");
+        }else if (!Patterns.PHONE.matcher(Phone).matches()){
+            etPhone.setError("Enter valid Phone Number");
         }
     }
 

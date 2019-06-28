@@ -21,8 +21,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     /*This is for Manager*/
     private FirebaseAuth mAuth;
-    Button SignIn, SignUp;
-    EditText Email, Password;
+    private FirebaseUser firebaseUser;
+    private String UserId;
+    private Button SignIn, SignUp , Proceed;
+    private EditText Email, Password;
     private static final String TAG = "EmailPasswordSignUp";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,22 +33,30 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         SignUp=findViewById(R.id.btnSignUp);
         SignIn=findViewById(R.id.btnSignIn);
+        Proceed=findViewById(R.id.btnProceed);
         Email=findViewById(R.id.editmail);
         Password=findViewById(R.id.editpwd);
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createSignUpAccount(Email.getText().toString(), Password.getText().toString() );
-                startActivity(new Intent(getApplicationContext() , ManagerData.class));
+
             }
         });
         SignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signIn(Email.getText().toString(),Password.getText().toString());
+
+            }
+        });
+        Proceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext() , ManagerData.class));
             }
         });
+        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
 
     }
 
@@ -92,7 +102,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }else{
                     /*sign in fails*/
                     Log.d(TAG, "userCreated:failed"+ task.getException());
-                   Toast.makeText(getBaseContext(), "Authentication Failed", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getBaseContext(), "Authentication Failed:"+task.getException(), Toast.LENGTH_SHORT).show();
                    updateUI(null);
 
                 }
