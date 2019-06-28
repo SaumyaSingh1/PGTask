@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    android:layout_height="match_parent"
+    tools:context=".ManagerData">
+
+
+    <EditText
+        android:layout_width="267dp"
+        android:layout_height="42dp"
+        android:layout_gravity="center"
+        android:id="@+id/tvName"
+        android:layout_marginTop="100dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:hint="Enter Name Here "
+        android:textColor="@color/textBlack"
+        android:textColorHint="@color/textBlack" />
+    <EditText
+        android:layout_width="267dp"
+        android:layout_height="42dp"
+        android:layout_gravity="center"
+        android:id="@+id/tvPhone"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:hint="Enter Phone Number  "
+        android:textColor="@color/textBlack"
+        android:textColorHint="@color/textBlack" />
+    <EditText
+        android:layout_width="267dp"
+        android:layout_height="42dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tvPg"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:hint="Enter PG "
+        android:textColor="@color/textBlack"
+        android:textColorHint="@color/textBlack" />
+    <EditText
+        android:layout_width="267dp"
+        android:layout_height="42dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:id="@+id/tvCode"
+        android:hint="Enter Code "
+        android:textColor="@color/textBlack"
+        android:textColorHint="@color/textBlack" />
+    <EditText
+        android:layout_width="267dp"
+        android:layout_height="42dp"
+        android:layout_gravity="center"
+        android:id="@+id/tvDate"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:hint="Enter Date Created "
+        android:textColor="@color/textBlack"
+        android:textColorHint="@color/textBlack" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="SAVE" />
+
+
+</LinearLayout>

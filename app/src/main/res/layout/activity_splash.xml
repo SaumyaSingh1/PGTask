@@ -10,8 +10,8 @@
     tools:context=".Splash">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="234dp"
-        android:layout_height="167dp"
+        android:layout_width="232dp"
+        android:layout_height="187dp"
         android:layout_gravity="center"
         android:layout_marginTop="200dp"
         android:src="@drawable/logo" />

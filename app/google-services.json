@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "429262734158",
+    "firebase_url": "https://pgtask-4845c.firebaseio.com",
+    "project_id": "pgtask-4845c",
+    "storage_bucket": "pgtask-4845c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:429262734158:android:f176b106e341b161",
+        "android_client_info": {
+          "package_name": "com.saumya.pgtask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "429262734158-oe1583pv32brq28udb5bkqlme8qtbm86.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.saumya.pgtask",
+            "certificate_hash": "8cff96e5e8b61cd5acff0d1e0f3e7268c2dda4a2"
+          }
+        },
+        {
+          "client_id": "429262734158-dugnr68ev3qmqbq89bvmoic7ede7a2tg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA6wwKC5aCQL6gJQATSnJaayNFKNbvc3M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "429262734158-dugnr68ev3qmqbq89bvmoic7ede7a2tg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,7 +10,8 @@ class Splash : AppCompatActivity() {
     private var handler : Handler? =null
     private val SplashLength:Long=2000
     private val handlerRunnable= Runnable {
-        if (!isFinishing){
+
+        if ( !isFinishing){
             startActivity(Intent(baseContext,MainActivity::class.java))
             finish()
         }
@@ -19,7 +20,7 @@ class Splash : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
+        val handler=Handler()
         handler!!.postDelayed(handlerRunnable , SplashLength)
     }
 
