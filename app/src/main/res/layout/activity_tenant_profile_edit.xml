@@ -3,11 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Manager.NotOnBoardedTenants">
+    tools:context=".TenantProfileEdit">
 
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="267dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:text="Update Profile"
+        android:textColor="@color/textcolor" />
 
     <TextView
         android:layout_marginTop="50dp"
@@ -22,7 +32,7 @@
         android:layout_width="302dp"
         android:id="@+id/etName"
         android:textColor="@color/textcolor"
-        android:hint="enter tenant name here.."
+        android:hint="enter name here.."
         android:textColorHint="@color/textcolor"
         android:layout_height="wrap_content" />
     <TextView
@@ -37,7 +47,7 @@
     <EditText
         android:layout_width="302dp"
         android:id="@+id/etPhone"
-        android:hint="enter tenant phone here.."
+        android:hint="enter  phone here.."
         android:textColor="@color/textcolor"
         android:textColorHint="@color/textcolor"
         android:layout_height="wrap_content" />
@@ -53,7 +63,7 @@
     <EditText
         android:layout_width="302dp"
         android:id="@+id/etRoom"
-        android:hint="enter tenant room no. here.."
+        android:hint="enter room no. here.."
         android:textColor="@color/textcolor"
         android:textColorHint="@color/textcolor"
         android:layout_height="wrap_content" />
@@ -69,34 +79,7 @@
         android:layout_width="302dp"
         android:id="@+id/etAmount"
         android:textColor="@color/textcolor"
-        android:hint="enter tenant rent amount here.."
+        android:hint="enter rent amount here.."
         android:textColorHint="@color/textcolor"
         android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btSave"
-        android:layout_marginTop="50dp"
-        android:layout_width="147dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Save" />
-
-    <Button
-        android:id="@+id/btnAddMore"
-        android:layout_width="184dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="Add More Tenant" />
-
-
-    <Button
-        android:id="@+id/btnnext"
-        android:layout_width="147dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="View Tenants" />
 </LinearLayout>

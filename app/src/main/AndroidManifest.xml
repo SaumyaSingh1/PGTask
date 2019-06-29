@@ -11,11 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TenantListActivity"></activity>
-        <activity android:name=".NotOnBoardedTenants" />
-        <activity android:name=".AddTenantActivity" />
-        <activity android:name=".ManagerData" />
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".TenantProfileEdit"></activity>
+        <activity android:name=".TenantAuthActivity" />
+        <activity android:name=".Manager.TenantListActivity" />
+        <activity android:name=".Manager.NotOnBoardedTenants" />
+        <activity android:name=".Manager.AddTenantActivity" />
+        <activity android:name=".Manager.ManagerData" />
+        <activity android:name=".Manager.SignUpActivity" />
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

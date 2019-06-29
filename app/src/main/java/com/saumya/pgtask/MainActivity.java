@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.saumya.pgtask.Manager.SignUpActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView Tenant , Manager ;
@@ -23,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(), SignUpActivity.class));
+            }
+        });
+        Tenant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), TenantAuthActivity.class));
             }
         });
 

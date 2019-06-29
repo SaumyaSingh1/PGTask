@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    android:layout_height="match_parent"
+    tools:context=".TenantAuthActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="199dp"
+
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:id="@+id/phoneAuthFields"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2.0">
+
+                <EditText
+                    android:id="@+id/etTenantPhone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:hint="Phone Number"
+                    android:inputType="phone"
+                    android:textColor="@color/textcolor"
+                    android:textColorHint="@color/textcolor" />
+
+                <EditText
+                    android:id="@+id/etTenantCode"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:hint="Verification Code"
+                    android:inputType="number"
+                    android:textColor="@color/textcolor"
+                    android:textColorHint="@color/textcolor" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="364dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="*Phone number should begin with +91*"
+                android:textColor="@color/textcolor" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2.0">
+
+                <Button
+                    android:id="@+id/btnSignUpTenant"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="START" />
+
+                <Button
+
+                    android:id="@+id/btnSignInTenant"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_weight="1.0"
+                    android:text="Verify" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/signedInButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:visibility="gone"
+            android:weightSum="1.0">
+
+            <Button
+                android:id="@+id/signOutButton"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnTenProceed"
+        android:layout_width="137dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="proceed" />
+
+
+
+</LinearLayout>
