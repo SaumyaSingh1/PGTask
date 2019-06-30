@@ -10,58 +10,62 @@
 
 
     <EditText
-        android:layout_width="267dp"
-        android:layout_height="42dp"
-        android:layout_gravity="center"
         android:id="@+id/tvName"
+        android:layout_width="294dp"
+        android:layout_height="47dp"
+        android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:background="@color/colorAccent"
         android:gravity="center"
         android:hint="Enter Name Here "
         android:textColor="@color/textBlack"
         android:textColorHint="@color/textBlack" />
+
     <EditText
-        android:layout_width="267dp"
-        android:layout_height="42dp"
-        android:layout_gravity="center"
         android:id="@+id/tvPhone"
+        android:layout_width="284dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:background="@color/colorAccent"
         android:gravity="center"
         android:hint="Enter Phone Number  "
         android:textColor="@color/textBlack"
         android:textColorHint="@color/textBlack" />
+
     <EditText
-        android:layout_width="267dp"
-        android:layout_height="42dp"
+        android:id="@+id/tvPg"
+        android:layout_width="289dp"
+        android:layout_height="43dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:id="@+id/tvPg"
         android:background="@color/colorAccent"
         android:gravity="center"
         android:hint="Enter PG "
         android:textColor="@color/textBlack"
         android:textColorHint="@color/textBlack" />
+
     <EditText
-        android:layout_width="267dp"
-        android:layout_height="42dp"
+        android:id="@+id/tvCode"
+        android:layout_width="289dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:background="@color/colorAccent"
         android:gravity="center"
-        android:id="@+id/tvCode"
         android:hint="Enter Code "
         android:textColor="@color/textBlack"
         android:textColorHint="@color/textBlack" />
+
     <EditText
-        android:layout_width="267dp"
-        android:layout_height="42dp"
-        android:layout_gravity="center"
         android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:background="@color/colorAccent"
         android:gravity="center"
-        android:hint="Enter Date Created "
+        android:hint="Enter Date Created as 01 May 2000 "
         android:textColor="@color/textBlack"
         android:textColorHint="@color/textBlack" />
 
@@ -74,6 +78,15 @@
         android:background="@color/colorAccent"
         android:gravity="center"
         android:text="SAVE" />
+    <Button
+        android:id="@+id/btnNexts"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="NEXT" />
 
 
 </LinearLayout>
