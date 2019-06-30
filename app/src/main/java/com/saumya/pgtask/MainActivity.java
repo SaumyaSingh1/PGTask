@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.saumya.pgtask.Manager.SignUpActivity;
+import com.saumya.pgtask.Tenant.TenantAuthActivity;
 
 public class MainActivity extends AppCompatActivity {
 

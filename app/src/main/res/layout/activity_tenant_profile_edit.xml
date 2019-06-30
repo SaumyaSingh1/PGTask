@@ -6,18 +6,18 @@
     android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent"
-    tools:context=".TenantProfileEdit">
+    tools:context=".Tenant.TenantProfileEdit">
 
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="267dp"
-        android:layout_height="44dp"
+        android:layout_width="313dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textSize="18dp"
         android:text="Update Profile"
-        android:textColor="@color/textcolor" />
+        android:textColor="@color/textcolor"
+        android:textSize="18dp" />
 
     <TextView
         android:layout_marginTop="50dp"
@@ -28,11 +28,41 @@
         android:textColor="@color/textcolor"
         android:textSize="18dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:id="@+id/a"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvShowName"
+            android:textSize="16dp"
+            android:layout_width="263dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|start"
+            android:gravity="center"
+            android:textAlignment="textStart"
+            android:text="Name Unregistered"
+            android:textColor="@color/textcolor"
+            android:textColorHint="@color/textcolor" />
+
+        <ImageView
+            android:id="@+id/imgName"
+            android:layout_width="59dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_mode_edit_black_24dp" />
+    </LinearLayout>
+
+
+
+
     <EditText
         android:layout_width="302dp"
-        android:id="@+id/etName"
+        android:id="@+id/etNewName"
+        android:visibility="invisible"
+        android:hint="enter new name here."
         android:textColor="@color/textcolor"
-        android:hint="enter name here.."
         android:textColorHint="@color/textcolor"
         android:layout_height="wrap_content" />
     <TextView
@@ -44,42 +74,57 @@
         android:textColor="@color/textcolor"
         android:textSize="18dp" />
 
-    <EditText
-        android:layout_width="302dp"
-        android:id="@+id/etPhone"
-        android:hint="enter  phone here.."
-        android:textColor="@color/textcolor"
-        android:textColorHint="@color/textcolor"
-        android:layout_height="wrap_content" />
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:id="@+id/b"
+        android:orientation="horizontal">
 
-        android:layout_width="216dp"
-        android:layout_height="41dp"
-        android:gravity="center|start"
-        android:text="ROOM :"
-        android:textColor="@color/textcolor"
-        android:textSize="18dp" />
+        <TextView
+            android:id="@+id/tvShowPhone"
+            android:layout_width="262dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|start"
+            android:gravity="center|start"
+            android:text="phone"
+            android:textAlignment="textStart"
+            android:textColor="@color/textcolor"
+            android:textColorHint="@color/textcolor"
+            android:textSize="16dp" />
 
-    <EditText
-        android:layout_width="302dp"
-        android:id="@+id/etRoom"
-        android:hint="enter room no. here.."
-        android:textColor="@color/textcolor"
-        android:textColorHint="@color/textcolor"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_width="216dp"
-        android:layout_height="41dp"
-        android:gravity="center|start"
-        android:text="RENT AMOUNT :"
-        android:textColor="@color/textcolor"
-        android:textSize="18dp" />
+        <ImageView
+            android:id="@+id/imgPhone"
+            android:layout_width="59dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_mode_edit_black_24dp" />
+    </LinearLayout>
 
     <EditText
         android:layout_width="302dp"
-        android:id="@+id/etAmount"
+        android:id="@+id/etNewPhone"
+        android:hint="enter new phone here."
+        android:visibility="invisible"
         android:textColor="@color/textcolor"
-        android:hint="enter rent amount here.."
         android:textColorHint="@color/textcolor"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="SAVE" />
+    <Button
+        android:id="@+id/btnMove"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="NEXT" />
+
+
 </LinearLayout>

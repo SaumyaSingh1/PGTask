@@ -1,4 +1,4 @@
-package com.saumya.pgtask;
+package com.saumya.pgtask.Tenant;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -21,8 +21,12 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.saumya.pgtask.R;
 
 import java.util.concurrent.TimeUnit;
 
@@ -44,7 +48,8 @@ public class TenantAuthActivity extends AppCompatActivity {
         findAllViews();
         mAuth=FirebaseAuth.getInstance();
         firebaseDatabase=FirebaseDatabase.getInstance();
-        
+        databaseReference=firebaseDatabase.getReference("Details");
+
         mCallBacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
@@ -86,8 +91,9 @@ public class TenantAuthActivity extends AppCompatActivity {
             }
             VerifyNumber(etTenantPhone.getText().toString());
             Toast.makeText(getBaseContext() , "Wait for the code ", Toast.LENGTH_SHORT).show();
-            }
-        });
+                 }
+            });
+            getPhoneNumber();
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,11 +110,29 @@ public class TenantAuthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getBaseContext() , "Logged In", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext() ,TenantProfileEdit.class ));
+                FirebaseDatabase.getInstance().getReference().child("Tenants").child("Detail").setValue(etTenantPhone.getText().toString());
+            startActivity(new Intent(getApplicationContext() , TenantProfileEdit.class ));
+            }
+        });
+
+    }
+    private void getPhoneNumber(){
+        databaseReference=FirebaseDatabase.getInstance().getReference().child("PG").child("jI5J5vunmmS7JNDlvtEvSnNja2M2").child("NotOnBoardedTenants");
+        databaseReference.child("Tenant1").orderByChild("Phone").equalTo(etTenantPhone.getText().toString()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("Values","Check Phone Number:"+ dataSnapshot.getKey());
+                Log.d("Values","Phone Number:"+ dataSnapshot.getChildren());
+                Log.d("Values","Phone Number:"+ dataSnapshot.getValue());
+                Log.d("Values","Phone Number:"+ dataSnapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }
-
     private  void verifyPhoneWithCode(String verificationId, String code){
         PhoneAuthCredential phoneAuthCredential=PhoneAuthProvider.getCredential(verificationId,code);
 signInWithPhoneCredential(phoneAuthCredential);

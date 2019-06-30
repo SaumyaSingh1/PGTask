@@ -41,21 +41,14 @@ public class NotOnBoardedTenants extends AppCompatActivity {
                 Phone=etPhone.getText().toString();
                 Room=etRoom.getText().toString();
                 Amount=etAmount.getText().toString();
-                dbReference.child("Name").push().setValue(Name);
-                dbReference.child("Phone").push().setValue(Phone);
-                dbReference.child("Room No").push().setValue(Room);
-                dbReference.child("Rent Amount").push().setValue(Amount);
+                dbReference.child("Name").setValue(Name);
+                dbReference.child("Phone").setValue(Phone);
+                dbReference.child("Room No").setValue(Room);
+                dbReference.child("Rent Amount").setValue(Amount);
                 Toast.makeText(getBaseContext() , "Tenant Added", Toast.LENGTH_SHORT).show();
                 btnAdd.setVisibility(View.VISIBLE);
             }
         });
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext() , TenantListActivity.class));
-            }
-        });
-
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +57,13 @@ public class NotOnBoardedTenants extends AppCompatActivity {
                 etPhone.setText("");
                 etAmount.setText("");
                 etRoom.setText("");
+            }
+        });
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext() , TenantListActivity.class));
             }
         });
 

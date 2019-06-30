@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent"
-    tools:context=".TenantAuthActivity">
+    tools:context=".Tenant.TenantAuthActivity">
 
 
     <RelativeLayout
