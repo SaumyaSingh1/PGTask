@@ -41,7 +41,7 @@ public class TenantAuthActivity extends AppCompatActivity {
     private String mVerificationId;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseUser firebaseUser;
-    private DatabaseReference databaseReference ,databaseReference1 , databaseReference2 ;
+    private DatabaseReference databaseReference1  ;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
     private Button btnSignUp,btnSignIn, btnProceed;
@@ -56,9 +56,8 @@ public class TenantAuthActivity extends AppCompatActivity {
 
         firebaseUser=mAuth.getCurrentUser();
 
-        databaseReference=firebaseDatabase.getReference();
         databaseReference1=firebaseDatabase.getReference("PG"+"/Uc73EXIXqZQjqmAZ5trKcLNRaRL2" + "/NotOnBoardedTenants");
-        databaseReference2 =firebaseDatabase.getReference("PG"+"/Uc73EXIXqZQjqmAZ5trKcLNRaRL2").child("OnBoardedTenants").child(firebaseUser.getUid());
+
 
         mCallBacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
@@ -128,9 +127,9 @@ public class TenantAuthActivity extends AppCompatActivity {
 
                 Toast.makeText(getBaseContext() , "Logged In", Toast.LENGTH_SHORT).show();
 
-                databaseReference.setValue(tenantDataModel) ;
+                firebaseDatabase.getReference().child("PG").child("Uc73EXIXqZQjqmAZ5trKcLNRaRL2").child("OnBoardedTenants").child(firebaseUser.getUid()).setValue(tenantDataModel);
 
-                databaseReference.child("Tenants").child(firebaseUser.getUid()).child("Details").child(firebaseUser.getPhoneNumber()).setValue( tenantDataModel);
+                firebaseDatabase.getReference().child("Tenants").child(firebaseUser.getUid()).child("Details").child(firebaseUser.getPhoneNumber()).setValue(tenantDataModel);
                 startActivity(new Intent(getApplicationContext() , TenantProfileEdit.class ));
 
             }
@@ -170,7 +169,7 @@ signInWithPhoneCredential(phoneAuthCredential);
     }
     private void  VerifyNumber(String number){
 
-        PhoneAuthProvider.getInstance().verifyPhoneNumber("+91" + number, 60, TimeUnit.SECONDS, this, mCallBacks);
+        PhoneAuthProvider.getInstance().verifyPhoneNumber( number, 60, TimeUnit.SECONDS, this, mCallBacks);
         mVerificationInProgress=true;
     }
 

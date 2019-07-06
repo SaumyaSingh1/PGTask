@@ -14,6 +14,7 @@ import com.saumya.pgtask.R;
 import java.util.ArrayList;
 
 public class TenantAdapter extends ArrayAdapter<TenantDataModel> {
+
     private ArrayList<TenantDataModel> dataModels;
 
     public TenantAdapter(Context context, int resource, ArrayList<TenantDataModel> dataModels) {
