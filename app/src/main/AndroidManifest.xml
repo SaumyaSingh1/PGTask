@@ -3,7 +3,8 @@
     package="com.saumya.pgtask">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Tenant.UploadPicture"></activity>
+        <activity android:name=".Manager.TenantAdapter"></activity>
+        <activity android:name=".Tenant.UploadPicture" />
         <activity android:name=".Tenant.TenantProfileEdit" />
         <activity android:name=".Tenant.TenantAuthActivity" />
         <activity android:name=".Manager.TenantListActivity" />

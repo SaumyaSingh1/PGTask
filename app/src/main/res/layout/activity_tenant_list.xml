@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent"
     tools:context=".Manager.TenantListActivity">
@@ -18,4 +19,13 @@
         android:gravity="center"
         android:text="List Of Tenants"
         android:textColor="@color/textcolor" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:id="@+id/lv"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+
 </LinearLayout>

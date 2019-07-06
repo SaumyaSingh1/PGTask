@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.saumya.pgtask.Manager.TenantDataModel;
 import com.saumya.pgtask.R;
 
 import java.util.concurrent.TimeUnit;
@@ -33,14 +34,18 @@ import java.util.concurrent.TimeUnit;
 public class TenantAuthActivity extends AppCompatActivity {
 
     private EditText etTenantPhone , etTenantCode;
+
+    private TenantDataModel tenantDataModel;
     private FirebaseAuth mAuth;
     private boolean mVerificationInProgress=false;
     private String mVerificationId;
     private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
+    private FirebaseUser firebaseUser;
+    private DatabaseReference databaseReference ,databaseReference1 , databaseReference2 ;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
     private Button btnSignUp,btnSignIn, btnProceed;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +53,12 @@ public class TenantAuthActivity extends AppCompatActivity {
         findAllViews();
         mAuth=FirebaseAuth.getInstance();
         firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference("Details");
+
+        firebaseUser=mAuth.getCurrentUser();
+
+        databaseReference=firebaseDatabase.getReference();
+        databaseReference1=firebaseDatabase.getReference("PG"+"/Uc73EXIXqZQjqmAZ5trKcLNRaRL2" + "/NotOnBoardedTenants");
+        databaseReference2 =firebaseDatabase.getReference("PG"+"/Uc73EXIXqZQjqmAZ5trKcLNRaRL2").child("OnBoardedTenants").child(firebaseUser.getUid());
 
         mCallBacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
@@ -80,7 +90,9 @@ public class TenantAuthActivity extends AppCompatActivity {
                 mVerificationId=s;
             }
         };
+
         final String phone = etTenantPhone.getText().toString();
+
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,11 +101,13 @@ public class TenantAuthActivity extends AppCompatActivity {
             if (!validateNumber()){
                 return;
             }
-            VerifyNumber(etTenantPhone.getText().toString());
-            Toast.makeText(getBaseContext() , "Wait for the code ", Toast.LENGTH_SHORT).show();
-                 }
-            });
-            getPhoneNumber();
+            VerifyWithDataBase();
+
+            }
+        });
+
+
+
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,28 +117,45 @@ public class TenantAuthActivity extends AppCompatActivity {
                 return;
             }
             verifyPhoneWithCode(mVerificationId ,code);
-                Toast.makeText(getBaseContext() , "Verified Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext() , "Verified and logged in Successfully", Toast.LENGTH_SHORT).show();
+
             }
         });
+
         btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Toast.makeText(getBaseContext() , "Logged In", Toast.LENGTH_SHORT).show();
-                FirebaseDatabase.getInstance().getReference().child("Tenants").child("Detail").setValue(etTenantPhone.getText().toString());
-            startActivity(new Intent(getApplicationContext() , TenantProfileEdit.class ));
+
+                databaseReference.setValue(tenantDataModel) ;
+
+                databaseReference.child("Tenants").child(firebaseUser.getUid()).child("Details").child(firebaseUser.getPhoneNumber()).setValue( tenantDataModel);
+                startActivity(new Intent(getApplicationContext() , TenantProfileEdit.class ));
+
             }
         });
 
     }
-    private void getPhoneNumber(){
-        databaseReference=FirebaseDatabase.getInstance().getReference().child("PG").child("jI5J5vunmmS7JNDlvtEvSnNja2M2").child("NotOnBoardedTenants");
-        databaseReference.child("Tenant1").orderByChild("Phone").equalTo(etTenantPhone.getText().toString()).addValueEventListener(new ValueEventListener() {
+    private void VerifyWithDataBase(){
+
+        databaseReference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("Values","Check Phone Number:"+ dataSnapshot.getKey());
-                Log.d("Values","Phone Number:"+ dataSnapshot.getChildren());
-                Log.d("Values","Phone Number:"+ dataSnapshot.getValue());
-                Log.d("Values","Phone Number:"+ dataSnapshot.getChildrenCount());
+
+                if (dataSnapshot.hasChild(etTenantPhone.getText().toString())){
+
+                    tenantDataModel = dataSnapshot.getValue(TenantDataModel.class);
+
+                    VerifyNumber(etTenantPhone.getText().toString());
+
+                    Toast.makeText(getBaseContext() ,  "We are verifying ", Toast.LENGTH_SHORT).show();
+                    Log.e("TAG", dataSnapshot.toString());
+
+                }else{
+                    Toast.makeText(getBaseContext() ,  "You are not registered ", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
@@ -139,7 +170,7 @@ signInWithPhoneCredential(phoneAuthCredential);
     }
     private void  VerifyNumber(String number){
 
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(number, 60, TimeUnit.SECONDS, this, mCallBacks);
+        PhoneAuthProvider.getInstance().verifyPhoneNumber("+91" + number, 60, TimeUnit.SECONDS, this, mCallBacks);
         mVerificationInProgress=true;
     }
 

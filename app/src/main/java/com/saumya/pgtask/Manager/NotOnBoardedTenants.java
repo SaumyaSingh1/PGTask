@@ -36,15 +36,18 @@ public class NotOnBoardedTenants extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dbReference=fbDatabase.getReference().child("PG").child(UserId).child("NotOnBoardedTenants").child("Tenant"+ i++ );
+
+                /*key of this info should be phone number of the tenant , How?*/
                 Name=etName.getText().toString();
                 Phone=etPhone.getText().toString();
                 Room=etRoom.getText().toString();
                 Amount=etAmount.getText().toString();
+                dbReference=fbDatabase.getReference().child("PG").child(UserId).child("NotOnBoardedTenants").child(Phone);
                 dbReference.child("Name").setValue(Name);
                 dbReference.child("Phone").setValue(Phone);
-                dbReference.child("Room No").setValue(Room);
-                dbReference.child("Rent Amount").setValue(Amount);
+                dbReference.child("RoomNo").setValue(Room);
+                dbReference.child("RentAmount").setValue(Amount);
+
                 Toast.makeText(getBaseContext() , "Tenant Added", Toast.LENGTH_SHORT).show();
                 btnAdd.setVisibility(View.VISIBLE);
             }
