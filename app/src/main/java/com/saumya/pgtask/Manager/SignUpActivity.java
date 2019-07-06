@@ -24,127 +24,133 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
     private String UserId;
-    private Button SignIn, SignUp , Proceed;
+    private Button SignIn, SignUp, Proceed;
     private EditText Email, Password;
     private static final String TAG = "EmailPasswordSignUp";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        mAuth=FirebaseAuth.getInstance();
-        SignUp=findViewById(R.id.btnSignUp);
-        SignIn=findViewById(R.id.btnSignIn);
-        Proceed=findViewById(R.id.btnProceed);
-        Email=findViewById(R.id.editmail);
-        Password=findViewById(R.id.editpwd);
+        mAuth = FirebaseAuth.getInstance();
+        SignUp = findViewById(R.id.btnSignUp);
+        SignIn = findViewById(R.id.btnSignIn);
+        Proceed = findViewById(R.id.btnProceed);
+        Email = findViewById(R.id.editmail);
+        Password = findViewById(R.id.editpwd);
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createSignUpAccount(Email.getText().toString(), Password.getText().toString() );
+                createSignUpAccount(Email.getText().toString(), Password.getText().toString());
 
             }
         });
         SignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn(Email.getText().toString(),Password.getText().toString());
+                signIn(Email.getText().toString(), Password.getText().toString());
 
             }
         });
         Proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext() , ManagerData.class));
+                startActivity(new Intent(getApplicationContext(), ManagerData.class));
             }
         });
-        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     }
 
-    private void signIn(String email, String password){
-        Log.d(TAG , "signin"+ email);
-        if (!validateForm()){
+    private void signIn(String email, String password) {
+        Log.d(TAG, "signin" + email);
+        if (!validateForm()) {
             return;
         }
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {            if (task.isSuccessful()){
-                        /*successfully signedIn*/
-                        Log.d(TAG , "signIn :successfully");
-                        FirebaseUser user=mAuth.getCurrentUser();
-                        updateUI(user);
-                    }else {
-                        /*sign in fails*/
-                        Log.d(TAG , "signIn: Failed");
-                        Toast.makeText(getBaseContext(), "SignIn Failed", Toast.LENGTH_SHORT).show();
-                        updateUI(null);
-                    }
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            /*successfully signedIn*/
+                            Log.d(TAG, "signIn :successfully");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            /*sign in fails*/
+                            Log.d(TAG, "signIn: Failed");
+                            Toast.makeText(getBaseContext(), "SignIn Failed", Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
 
                     }
                 });
         /*SignIn method ends here*/
     }
-    private void createSignUpAccount(String email, String password){
-        Log.d(TAG, "createAccount:"+ email);
-        if (!validateForm()){
+
+    private void createSignUpAccount(String email, String password) {
+        Log.d(TAG, "createAccount:" + email);
+        if (!validateForm()) {
             return;
         }
         mAuth.createUserWithEmailAndPassword(email, password)
-        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    //SignIn Success
-                    Log.d(TAG, "userCreated:successfully");
-                    FirebaseUser user=mAuth.getCurrentUser();
-                    updateUI(user);
-                }else{
-                    /*sign in fails*/
-                    Log.d(TAG, "userCreated:failed"+ task.getException());
-                   Toast.makeText(getBaseContext(), "Authentication Failed:"+task.getException(), Toast.LENGTH_SHORT).show();
-                   updateUI(null);
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            //SignIn Success
+                            Log.d(TAG, "userCreated:successfully");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            /*sign in fails*/
+                            Log.d(TAG, "userCreated:failed" + task.getException());
+                            Toast.makeText(getBaseContext(), "Authentication Failed:" + task.getException(), Toast.LENGTH_SHORT).show();
+                            updateUI(null);
 
-                }
-            }
-        }) ;
+                        }
+                    }
+                });
         /*End CreateAccount method*/
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser firebaseUser=mAuth.getCurrentUser();
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
         updateUI(firebaseUser);
     }
 
-    private boolean validateForm(){
-        boolean valid=true;
+    private boolean validateForm() {
+        boolean valid = true;
 
-        String email=Email.getText().toString();
-        if (TextUtils.isEmpty(email)){
+        String email = Email.getText().toString();
+        if (TextUtils.isEmpty(email)) {
             Email.setError("Required Field:");
-            valid=false;
-        }else {
+            valid = false;
+        } else {
             Email.setError(null);
         }
-        String password=Password.getText().toString();
-        if (TextUtils.isEmpty(password)){
+        String password = Password.getText().toString();
+        if (TextUtils.isEmpty(password)) {
             Password.setError("Required Field:");
-            valid=false;
-        }else {
+            valid = false;
+        } else {
             Password.setError(null);
         }
         return valid;
     }
 
     private void updateUI(FirebaseUser firebaseUser) {
-        if (firebaseUser !=null){
+        if (firebaseUser != null) {
+
             /*when the user is logged in*/
+
             SignIn.setVisibility(View.VISIBLE);
             SignUp.setVisibility(View.GONE);
-        }else{
+        } else {
+
             SignUp.setVisibility(View.VISIBLE);
             SignIn.setVisibility(View.GONE);
             Password.setVisibility(View.VISIBLE);

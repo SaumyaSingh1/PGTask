@@ -24,6 +24,7 @@ public class NotOnBoardedTenants extends AppCompatActivity {
     FirebaseDatabase fbDatabase;
     DatabaseReference dbReference;
     String Name , Phone , Room , Amount ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,7 @@ public class NotOnBoardedTenants extends AppCompatActivity {
         fbDatabase=FirebaseDatabase.getInstance();
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
         UserId=firebaseUser.getUid().toString();
+
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +74,7 @@ public class NotOnBoardedTenants extends AppCompatActivity {
 
     }
     private void findAllViews(){
+
         etName=findViewById(R.id.etName);
         etAmount=findViewById(R.id.etAmount);
         etPhone=findViewById(R.id.etPhone);
@@ -79,5 +82,6 @@ public class NotOnBoardedTenants extends AppCompatActivity {
         btnAdd=findViewById(R.id.btnAddMore);
         btnSave=findViewById(R.id.btSave);
         btnNext=findViewById(R.id.btnnext);
+
     }
 }

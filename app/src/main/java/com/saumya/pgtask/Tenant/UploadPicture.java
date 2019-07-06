@@ -34,21 +34,26 @@ public class UploadPicture extends AppCompatActivity {
     FirebaseStorage storage;
     StorageReference storageReference;
     private  final int PICK_IMAGE_REQUEST=10;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_picture);
+
         ProfilePicture=findViewById(R.id.imgProfile);
         ChoosePicture=findViewById(R.id.imgChoose);
         btnUpload=findViewById(R.id.btnSavePic);
+
         storage=FirebaseStorage.getInstance();
         storageReference=storage.getReference();
+
         ChoosePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ChooseImage();
             }
         });
+
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +84,7 @@ public class UploadPicture extends AppCompatActivity {
 
     }
     private void uploadImage(){
+        
      if (filePath!=null){
          final ProgressDialog progressDialog=new ProgressDialog(this);
          progressDialog.setTitle("Uploading...");

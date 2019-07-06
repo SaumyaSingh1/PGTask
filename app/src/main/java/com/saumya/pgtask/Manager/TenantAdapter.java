@@ -27,9 +27,12 @@ public class TenantAdapter extends ArrayAdapter<TenantDataModel> {
         if (v == null) {
             LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = layoutInflater.inflate(R.layout.activity_tenant_adapter, null);
+
         }
+
         TenantDataModel tenantDataModel = dataModels.get(position);
         if (tenantDataModel != null) {
+
             TextView tenantName = v.findViewById(R.id.tvName);
             TextView tenantPhone = v.findViewById(R.id.tvPhone);
             TextView tenantAmount = v.findViewById(R.id.tvAmount);
@@ -38,6 +41,7 @@ public class TenantAdapter extends ArrayAdapter<TenantDataModel> {
             tenantAmount.setText(tenantDataModel.getRentAmount());
             tenantPhone.setText(tenantDataModel.getPhone());
             tenantRoom.setText(tenantDataModel.getRoomNo());
+
         }
         return v;
     }

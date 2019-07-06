@@ -15,14 +15,17 @@ public class AddTenantActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_tenant);
+
         btnYes=findViewById(R.id.btnYes);
         btnNo=findViewById(R.id.btnNo);
+
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext() , NotOnBoardedTenants.class));
             }
         });
+
         btnNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

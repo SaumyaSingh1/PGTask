@@ -48,12 +48,15 @@ public class ManagerData extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Name=etName.getText().toString();
                 Phone=etPhone.getText().toString();
                 PgName=etPgName.getText().toString();
                 pinCode=etPinCode.getText().toString();
                 DateCreated=etDateCreated.getText().toString();
+
                 verifyDetails();
+
                 databaseReference.child("PgDetails").child("Name").setValue(Name);
                 databaseReference.child("PgDetails").child("Phone").setValue(Phone);
                 databaseReference.child("PgDetails").child("PGName").setValue(PgName);
@@ -98,6 +101,7 @@ public class ManagerData extends AppCompatActivity {
     }
 
     private void findallView(){
+
         etName=findViewById(R.id.tvName);
         etPhone=findViewById(R.id.tvPhone);
         Next=findViewById(R.id.btnNexts);
@@ -105,5 +109,6 @@ public class ManagerData extends AppCompatActivity {
         etPinCode=findViewById(R.id.tvCode);
         etDateCreated=findViewById(R.id.tvDate);
         btnSave=findViewById(R.id.btnSave);
+
     }
 }
