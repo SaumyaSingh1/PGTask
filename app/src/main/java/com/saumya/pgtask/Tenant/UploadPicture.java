@@ -84,7 +84,7 @@ public class UploadPicture extends AppCompatActivity {
 
     }
     private void uploadImage(){
-        
+
      if (filePath!=null){
          final ProgressDialog progressDialog=new ProgressDialog(this);
          progressDialog.setTitle("Uploading...");

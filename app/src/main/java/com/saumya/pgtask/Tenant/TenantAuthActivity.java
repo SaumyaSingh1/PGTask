@@ -56,7 +56,7 @@ public class TenantAuthActivity extends AppCompatActivity {
 
         firebaseUser=mAuth.getCurrentUser();
 
-        databaseReference1=firebaseDatabase.getReference("PG"+"/Uc73EXIXqZQjqmAZ5trKcLNRaRL2" + "/NotOnBoardedTenants");
+        databaseReference1=firebaseDatabase.getReference("PG/Uc73EXIXqZQjqmAZ5trKcLNRaRL2/NotOnBoardedTenants");
 
 
         mCallBacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -102,6 +102,10 @@ public class TenantAuthActivity extends AppCompatActivity {
             }
             VerifyWithDataBase();
 
+            firebaseDatabase.getReference().child("PG").child("Uc73EXIXqZQjqmAZ5trKcLNRaRL2").child("OnBoardedTenants").child(firebaseUser.getUid()).setValue(tenantDataModel);
+
+            firebaseDatabase.getReference().child("Tenants").child(firebaseUser.getUid()).child("Details").child(firebaseUser.getPhoneNumber()).setValue(tenantDataModel);
+
             }
         });
 
@@ -127,9 +131,7 @@ public class TenantAuthActivity extends AppCompatActivity {
 
                 Toast.makeText(getBaseContext() , "Logged In", Toast.LENGTH_SHORT).show();
 
-                firebaseDatabase.getReference().child("PG").child("Uc73EXIXqZQjqmAZ5trKcLNRaRL2").child("OnBoardedTenants").child(firebaseUser.getUid()).setValue(tenantDataModel);
 
-                firebaseDatabase.getReference().child("Tenants").child(firebaseUser.getUid()).child("Details").child(firebaseUser.getPhoneNumber()).setValue(tenantDataModel);
                 startActivity(new Intent(getApplicationContext() , TenantProfileEdit.class ));
 
             }
